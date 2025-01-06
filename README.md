@@ -16,12 +16,12 @@ Match healthcare professionals with clinician roles
 
 **Microsoft Tech Stack**
 
-- **.NET**
-- **C#**
-- **Azure OpenAI for natural-language queries**
-- **Azure SQL Database for data storage**
-- **Azure App Service for hosting**
-- **Visual Studio for development and debugging**
+- .NET
+- C#
+- Azure OpenAI for natural-language queries
+- Azure SQL Database for data storage
+- Azure App Service for hosting
+- Visual Studio for development and debugging
 
 ## Areas for Improvement
 
