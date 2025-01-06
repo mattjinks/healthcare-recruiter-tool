@@ -1,0 +1,80 @@
+﻿@model RecruiterWorkflow.Models.Job
+
+@{
+    ViewData["Title"] = "Job Profile";
+    int posId = 15;
+}
+
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-body">
+            <!-- Candidate Details -->
+            <h4>@Model.Title</h4>
+            <p><strong>@Model.Clinic.Name</strong></p>
+            
+            <hr/>
+            <h5>Description: </h5>
+            <p>@Model.Description</p>
+
+            <h5>Responsibilities: </h5>
+            <p>@Model.Responsibilities</p>
+
+            <h5>Requirements: </h5>
+            <p>@Model.Requirements</p>
+
+            <h5>Compensation & Benefits: </h5>
+            <p>@Model.CompensationAndBenefits</p>
+            
+            <!-- Positions Section -->
+            @if (Model.AvailablePositions != null && Model.AvailablePositions.Any())
+            {
+                <h5>Available Positions</h5>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           name="positionTypes"
+                           value="Full-Time"
+                           id="fullTime"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.FullTime) ? "checked" : "")>
+                    <label class="form-check-label" for="fullTime">Full-Time </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input no-click"
+                           type="checkbox"
+                           name="positionTypes"
+                           value="Part-Time"
+                           id="partTime"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.PartTime) ? "checked" : "")>
+                    <label class="form-check-label no-click" for="partTime">Part-Time</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input no-click" type="checkbox" name="positionTypes" value="Temporary" id="temporary"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.Temporary) ? "checked" : "")>
+                    <label class="form-check-label" for="temporary">Temporary</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input no-click" type="checkbox" name="positionTypes" value="Permanent" id="permanent"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.Permanent) ? "checked" : "")>
+                    <label class="form-check-label" for="permanent">Permanent</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input no-click" type="checkbox" name="positionTypes" value="Remote" id="remote"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.Remote) ? "checked" : "")>
+                    <label class="form-check-label" for="remote">Remote</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input no-click" type="checkbox" name="positionTypes" value="InOffice" id="inOffice"
+                    @(Model.AvailablePositions.Any(p => p.Type == PositionType.InOffice) ? "checked" : "")>
+                    <label class="form-check-label" for="inOffice">In-Office</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="mt-3">
+        <a asp-controller="Jobs" asp-action="Index" class="btn btn-secondary">Back to Jobs</a>
+        @* <a asp-controller="Jobs" asp-action="DeletePositions" asp-route-posId="@posId">Delete Positions + @posId</a> *@
+    </div>
+</div>

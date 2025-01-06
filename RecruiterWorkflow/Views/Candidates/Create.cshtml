@@ -1,0 +1,92 @@
+﻿@model RecruiterWorkflow.Models.Candidate
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<h3>Add a Candidate!</h3>
+
+<form asp-action="Create" method="post">
+	<div class="form-group">
+		<label for="FirstName">Firstname</label>
+		<input type="text" class="form-control" asp-for="FirstName" />
+	</div>
+	<div class="form-group">
+		<label for="LastName">Lastname</label>
+		<input type="text" class="form-control" asp-for="LastName" />
+	</div>
+	<div class="form-group">
+		<label for="Email">Email</label>
+		<input type="text" class="form-control" asp-for="Email" />
+	</div>
+	<div class="form-group">
+		<label for="Occupation">Occupation</label>
+		<input type="text" class="form-control" asp-for="Occupation" />
+	</div>
+	<div class="form-group">
+		<label for="Phone">Phone</label>
+		<input type="text" class="form-control" asp-for="Phone" />
+	</div>
+	<div class="form-group">
+		<label for="Specialty">Specialty</label>
+		<input type="text" class="form-control" asp-for="Specialty" />
+	</div>
+	<div class="form-group">
+		<label for="State">State</label>
+		<input type="text" class="form-control" asp-for="State" />
+	</div>
+
+	<h4>Credentials</h4>
+	<div id="credentials-container">
+		<div class="credential">
+			<label for="CredentialName">Credential Name</label>
+			<input type="text" name="Credentials[0].Name" class="form-control" />
+		</div>
+	</div>
+	<button type="button" onclick="addCredential()">Add Another Credential</button>
+
+	<h4>Experience</h4>
+	<div id="experiences-container">
+		<div class="experience">
+			<label for="ExperienceName">Employer Name</label>
+			<input type="text" name="Experiences[0].Employer" class="form-control" />
+		</div>
+	</div>
+	<button type="button" onclick="addExperience()">Add Another Experience</button>
+	
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+	let credentialCount = 1;
+	let experienceCount = 1;
+
+
+	function addCredential() {
+		const container = document.getElementById("credentials-container");
+		const newCredentialDiv = document.createElement("div");
+		newCredentialDiv.classList.add("credential");
+
+		newCredentialDiv.innerHTML = `
+			<label for="CredentialName">Credential Name</label>
+			<input type="text" name="Credentials[${credentialCount}].Name" class="form-control" />
+		`;
+
+		container.appendChild(newCredentialDiv);
+		credentialCount++;
+	}
+
+	function addExperience() {
+		const container = document.getElementById("experiences-container");
+		const newExperienceDiv = document.createElement("div");
+		newExperienceDiv.classList.add("experience");
+
+		newExperienceDiv.innerHTML = `
+			<label for="ExperienceName">Experience Name</label>
+			<input type="text" name="Experiences[${experienceCount}].Name" class="form-control" />
+		`;
+
+		container.appendChild(newExperienceDiv);
+		experienceCount++;
+	}
+</script>

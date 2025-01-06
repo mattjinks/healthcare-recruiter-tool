@@ -1,0 +1,15 @@
+﻿@model RecruiterWorkflow.Models.Job
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<h3>Delete a Job!</h3>
+
+<p>@Model.Title</p>
+<p>@Model.Description</p>
+
+<form asp-action="Delete" method="post">
+	<input type="hidden" asp-for="Id" />
+	<input type="submit" class="btn btn-danger" value="Delete" />
+</form>

@@ -1,0 +1,254 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    width: 100%;
+    padding: 0px;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+
+.scrollable {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.no-padding {
+    padding: 0 !important; /* Remove or override any padding */
+}
+
+.job-match {
+    margin-right: 24px;
+}
+
+.search-filters {
+    margin-bottom: 24px;
+    margin-top: 24px;
+}
+
+.search-toggles {
+    margin-bottom: 24px;
+}
+
+.no-click {
+    pointer-events: none; /* Prevent interaction */
+}
+
+.form-check-label {
+    color: #000; /* Ensure label text color remains consistent */
+}
+
+.button-group {
+    gap: 8px;
+}
+
+.selected {
+    background-color: #258cfb;
+    color: white;
+}
+
+.custom-btn-group .btn {
+    background-color: white; /* Default background for unchecked */
+    color: #326295; /* Default text color for unchecked */
+}
+
+/* Customizing checked appearance for the same group */
+.custom-btn-group .btn-check:checked + .btn {
+    background-color: #fff; /* Change to your desired background color */
+    color: #326295; /* Change text color to ensure contrast */
+    pointer-events: none; /* Prevent further interaction */
+}
+
+/* Optional: Add hover effects for specific buttons */
+.custom-btn-group .btn:hover {
+    background-color: #6b839d; /* Lighter shade for hover */
+    color: white;
+}
+
+/*input[type="checkbox"].bookmark:checked {
+    background-color: mediumpurple;*/ /* Red background */
+    /*border-color: mediumpurple;*/ /* Match border to background */
+/*}*/
+
+input[type="checkbox"].bookmark:checked {
+    background-color: mediumpurple; /* Red background */
+    border-color: mediumpurple; /* Match border to background */
+}
+
+input[type="checkbox"].profile:checked {
+    background-color: #a893d4; /* Red background */
+    border-color: #a893d4; /* Match border to background */
+}
+
+input[type="checkbox"].search-toggle:checked {
+    background-color: #326295; /* Red background */
+    border-color: #326295; /* Match border to background */
+}
+
+.search-title {
+    color: #326295;
+}
+
+.search-example {
+    color: #326295;
+}
+
+.search-button {
+    background-color: #326295;
+    color: white;
+}
+
+.search-button:hover {
+    background-color: #6b839d;
+    color: white;
+}
+
+.save-button {
+    background-color: mediumpurple;
+    color:white;
+}
+
+.save-button:hover {
+    background-color: #aa95d5;
+    color: white;
+}
+
+.back-button {
+    background-color: white;
+    border: 1px solid mediumpurple;
+    color: mediumpurple;
+}
+
+.back-button:hover {
+    background-color: mediumpurple;
+    border: 1px solid mediumpurple;
+    color: white;
+}
+
+.link-button {
+    font-size: .9rem;
+}
+
+.match-page {
+    background-color: #f4eeff;
+}
+
+.profile-text {
+    color: #326295;
+}
+
+.h2-text {
+    color: mediumpurple;
+}
+
+.purple-text {
+    color: mediumpurple;
+}
+
+.blue-text {
+    color: #326295;
+}
+
+.modal-content.transparent-body {
+    background-color: transparent;
+    border: none; /* Optional: Remove border if necessary */
+    box-shadow: none; /* Optional: Remove shadow */
+}
+
+/* Optional: Ensure modal-body remains visually transparent */
+.transparent-body {
+    background-color: transparent;
+}
+
+.custom-spinner-dark {
+    color: #624b90; /* Replace with your custom color */
+}
+
+.custom-spinner-medium {
+    color: white; /* Replace with your custom color */
+}
+
+.custom-spinner-light {
+    color: #ab96d7; /* Replace with your custom color */
+}
+
+/*.modal-backdrop {
+    background-color: white;
+}
+*/
+.modal-backdrop-grey {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    z-index: 1040;
+}
+
+.modal-backdrop-white {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    z-index: 1040;
+}
+
+.modal-backdrop-blue {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: blue;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    z-index: 1040;
+}
+
+.modal-transition {
+    transition: all 0.4s ease;
+}
+
+.custom-icon {
+    font-size: 60px;
+    color: white;
+}
+
+.homepage-section {
+    padding-left: 24%;
+    padding-right: 24%;
+}

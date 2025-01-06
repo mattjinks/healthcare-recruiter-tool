@@ -1,0 +1,41 @@
+﻿@model RecruiterWorkflow.Models.Job
+
+@{
+	ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create" method="post">
+	<div class="form-group">
+		<label for="Title">Title</label>
+		<input type="text" class="form-control" asp-for="Title"/>
+	</div>
+	<div class="form-group">
+		<label for="Duration">Duration</label>
+		<input type="text" class="form-control" asp-for="Duration" />
+	</div>
+	<div class="form-group">
+		<label for="Schedule">Schedule</label>
+		<input type="text" class="form-control" asp-for="Schedule" />
+	</div>
+	<div class="form-group">
+		<label for="Description">Description</label>
+		<input type="text" class="form-control" asp-for="Description" />
+	</div>
+	<div class="form-group">
+		<label for="Responsibilities">Responsibilities</label>
+		<input type="text" class="form-control" asp-for="Responsibilities" />
+	</div>
+	<div class="form-group">
+		<label for="Requirements">Requirements</label>
+		<input type="text" class="form-control" asp-for="Requirements" />
+	</div>
+	<div class="form-group">
+		<label for="CompensationAndBenefits">Compensation And Benefits</label>
+		<input type="number" class="form-control" asp-for="CompensationAndBenefits" />
+	</div>
+	<div class="form-group">
+		<label for="ClinicId">Clinic ID</label>
+		<input type="number" class="form-control" asp-for="ClinicId" />
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,39 @@
+﻿@model RecruiterWorkflow.Models.Candidate
+
+@{
+	ViewData["Title"] = "Edit";
+}
+
+<h3>Edit a Candidate!</h3>
+
+<form asp-action="Edit" method="post">
+	<div class="form-group">
+		<label for="FirstName">Firstname</label>
+		<input type="text" class="form-control" asp-for="FirstName" />
+	</div>
+	<div class="form-group">
+		<label for="LastName">Lastname</label>
+		<input type="text" class="form-control" asp-for="LastName" />
+	</div>
+	<div class="form-group">
+		<label for="Email">Email</label>
+		<input type="text" class="form-control" asp-for="Email" />
+	</div>
+	<div class="form-group">
+		<label for="Occupation">Occupation</label>
+		<input type="text" class="form-control" asp-for="Occupation" />
+	</div>
+	<div class="form-group">
+		<label for="Phone">Phone</label>
+		<input type="text" class="form-control" asp-for="Phone" />
+	</div>
+	<div class="form-group">
+		<label for="Specialty">Specialty</label>
+		<input type="text" class="form-control" asp-for="Specialty" />
+	</div>
+	<div class="form-group">
+		<label for="State">State</label>
+		<input type="text" class="form-control" asp-for="State" />
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>

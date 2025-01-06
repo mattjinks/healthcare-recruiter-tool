@@ -1,0 +1,29 @@
+﻿@model List<RecruiterWorkflow.Models.Clinic>
+@{
+	ViewData["Title"] = "Index Clinics";
+}
+<h3>Index</h3>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Address</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach(var clinic in Model)
+		{
+			<tr>
+				<td>@clinic.Name</td>
+				<td>@clinic.Address</td>
+				<td>@clinic.Email</td>
+				<td>
+					<a asp-action="Edit" asp-route-id="@clinic.Id">Edit</a>
+					<a asp-action="Delete" asp-route-id="@clinic.Id">Delete</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

@@ -1,0 +1,91 @@
+﻿@model List<RecruiterWorkflow.Models.Candidate>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="home-container">
+    <div class="d-flex justify-content-center mb-3">
+        <div>
+            <h1 class="purple-text">Locum Tenens Recruiter Tool</h1>
+            <div class="d-flex justify-content-center">
+                <p>Match healthcare professionals with clinician roles</p>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex gap-3">
+            <a class="btn btn-outline-dark" asp-controller="Candidates" asp-action="Index">Search Candidates</a>
+            <a class="btn btn-outline-dark" asp-controller="Jobs" asp-action="Index">Search Jobs</a>
+        </div>
+    </div>
+    <br/>
+    <div class="mb-3 homepage-section blue-text">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="blue-text">
+                    <h2>Key Features</h2>
+                </div>
+                <hr/>
+                <ul class="card-content">
+                    <li class="mb-2 mt-2"><strong>AI-Powered Matching:</strong> Automatically match healthcare professionals to clinician roles based on skills, credentials, requirements, etc.</li>
+                    <li><strong>Natural Language Search:</strong> Search for candidates or positions using conversational queries for a more user-friendly experience.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="mb-3 homepage-section blue-text">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class=blue-text>
+                    <h2>Technologies Used</h2>
+                </div>
+                <hr/>
+                <ul class="card-content">
+                    <li class="mt-2"><strong>Microsoft Tech Stack:</strong></li>
+                    <ul>
+                        <li>.NET</li>
+                        <li class="mb-2 mt-2">C#</li>
+                        <li class="mb-2 mt-2">Azure OpenAI for natural-language queries</li>
+                        <li class="mb-2 mt-2">Azure SQL Database for data storage</li>
+                        <li class="mb-2 mt-2">Azure App Service for hosting</li>
+                        <li>Visual Studio for development and debugging</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="mb-3 homepage-section blue-text">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="blue-text">
+                    <h2>Areas for Improvement</h2>
+                </div>
+                <hr/>
+                <ul class="card-content">
+                    <li class="mb-2 mt-2">
+                        <strong>Performance Optimization:</strong>
+                        Currently, every search triggers a database query, which can slow down the application. Implementing a caching mechanism (e.g., Redis or in-memory caching) could significantly improve search speed by reducing redundant database calls.
+                    </li>
+                    <li>
+                        <strong>Enhanced Front-End Development:</strong>
+                        Transitioning to a modern front-end framework like React or Angular would enable a component-based architecture, making the front-end more organized, scalable, and easier to maintain.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        width: 100%;
+    }
+
+    .home-container .card-content {
+        padding-left: 0; 
+        list-style: none; 
+    }
+</style>

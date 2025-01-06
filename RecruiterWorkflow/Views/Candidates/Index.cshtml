@@ -1,0 +1,396 @@
+﻿@model List<RecruiterWorkflow.Models.Candidate>
+
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["ContainerClass"] = "container";  // Optional if you want to explicitly set it
+    List<Candidate> candidates = Model;
+}
+
+<div class="search-filters" id="search-filters">
+
+    <div class="d-flex justify-content-center mb-3">
+        <h2 class="h2-text">Search Candidates</h2>
+    </div>
+
+    <form asp-controller="Candidates" asp-action="NaturalLanguageSearch" method="get" class="form-inline">
+        <div class="d-flex justify-content-center align-items-center">
+            <div class="d-flex gap-3">
+                <div class="custom-btn-group">
+                    <input type="checkbox" class="btn-check search" id="ai-search-toggle" autocomplete="off" />
+                    <label class="btn" for="ai-search-toggle">Natural Language Search</label>
+                </div>
+
+                <div class="custom-btn-group">
+                    <input type="checkbox" class="btn-check" id="manual-search-toggle" autocomplete="off" />
+                    <label class="btn" for="manual-search-toggle">Smart Filter Search</label>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <!-- Manual Search Toggle -->
+        <!-- AI Search Form -->
+        <div class="form-group" id="ai-search">
+            <h5 class="search-title">Natural Language Search:</h5>
+            <p class="search-example">"Nurses that live in California"</p>
+            <p class="search-example">"Physicians in Georgia with experience in emergency medicine and certifications in Advanced Cardiovascular Life Support (ACLS)."</p>            
+            <input type="text" id="userPrompt" name="userPrompt" class="form-control" placeholder="Type your prompt here..." value="@Context.Request.Query["userPrompt"]" required />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn search-button mt-2" data-bs-toggle="modal" data-bs-target="#search-nls-modal">Search</button>
+
+                <div class="modal fade" id="search-nls-modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content transparent-body">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center gap-3">
+                                    <span class="material-symbols-outlined custom-icon">
+                                        smart_toy
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3 mt-3">
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form asp-controller="Candidates" asp-action="SmartFilterSearch" method="get" class="form-inline">
+        <div class="form-group" id="manual-search" style="display: none;">
+            <div class="mb-3 row align-items-center">
+                <div class="col-sm-3">
+                    <label for="name" class="col-form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Type name here..." value="@Context.Request.Query["name"]" />
+                </div>
+                <div class="col-sm-2">
+                    <label for="state" class="col-form-label">State</label>
+                    <input type="text" id="state" name="state" class="form-control" placeholder="Type state here..." value="@Context.Request.Query["state"]" />
+                </div>
+                <div class="col-sm-3">
+                    <label for="occupation" class="col-form-label">Occupation</label>
+                    <input type="text" id="occupation" name="occupation" class="form-control" placeholder="Type occupation here..." value="@Context.Request.Query["occupation"]" />
+                </div>
+                <div class="col-sm-3">
+                    <label for="specialty" class="col-form-label">Specialty</label>
+                    <input type="text" id="specialty" name="specialty" class="form-control" placeholder="Type specialty here..." value="@Context.Request.Query["specialty"]" />
+                </div>
+            </div>
+            <label for="position" class="col-form-label">Position Type</label>
+            <br />
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark"
+                type="checkbox"
+                name="positionTypes"
+                value="FullTime"
+                id="fullTime"
+                @(Context.Request.Query["positionTypes"].Contains("FullTime") ? "checked" : "")>
+                <label class="form-check-label" for="fullTime">Full-Time</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark"
+                type="checkbox"
+                name="positionTypes"
+                value="PartTime"
+                id="partTime"
+                @(Context.Request.Query["positionTypes"].Contains("PartTime") ? "checked" : "")>
+                <label class="form-check-label" for="partTime">Part-Time</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark" type="checkbox" name="positionTypes" value="Temporary" id="temporary"
+                @(Context.Request.Query["positionTypes"].Contains("Temporary") ? "checked" : "") />
+                <label class="form-check-label" for="temporary">Temporary</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark" type="checkbox" name="positionTypes" value="Permanent" id="permanent"
+                @(Context.Request.Query["positionTypes"].Contains("Permanent") ? "checked" : "") />
+                <label class="form-check-label" for="permanent">Permanent</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark" type="checkbox" name="positionTypes" value="Remote" id="remote"
+                @(Context.Request.Query["positionTypes"].Contains("Remote") ? "checked" : "") />
+                <label class="form-check-label" for="remote">Remote</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input bookmark" type="checkbox" name="positionTypes" value="InOffice" id="inOffice"
+                @(Context.Request.Query["positionTypes"].Contains("InOffice") ? "checked" : "") />
+                <label class="form-check-label" for="inOffice">In-Office</label>
+            </div>
+
+
+            <br /><br />
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn search-button" id="search-button" data-bs-toggle="modal" data-bs-target="#search-sfs-modal">Search</button>
+
+                <div class="modal fade" id="search-sfs-modal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content transparent-body">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-center gap-3">
+                                    <span class="material-symbols-outlined custom-icon">
+                                        smart_toy
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-center gap-3 mt-3">
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow custom-spinner-medium" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<hr />
+
+<div class="row justify-content-center">
+    @foreach (var candidate in candidates)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card shadow" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">@candidate.FirstName</h5>
+                    <p class="card-subtitle mb-2 text-body-secondary">@candidate.Occupation - @candidate.Specialty</p>
+                    <p class="card-subtitle mb-2 text-body-secondary">@candidate.State</p>
+                    <div>
+                        <!-- Assign unique id for the modal -->
+                        <a type="button" class="btn mt-2 btn-outline-primary link-button d-flex justify-content-center"
+                        data-bs-toggle="modal"
+                        data-bs-target="#profileModal-@candidate.Id">
+                            View Profile
+                        </a>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="profileModal-@candidate.Id" tabindex="-1" aria-labelledby="profileModalLabel-@candidate.Id" aria-hidden="true">
+                        <div class="modal-dialog modal-lg profile-text">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="profileModalLabel-@candidate.Id">Candidate Profile</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Name:</strong> @candidate.FirstName @candidate.LastName</p>
+                                    <p><strong>Email:</strong> @candidate.Email</p>
+                                    <p><strong>Phone:</strong> @candidate.Phone</p>
+                                    <p><strong>State:</strong> @candidate.State</p>
+                                    <p><strong>Occupation:</strong> @candidate.Occupation</p>
+                                    @if (!string.IsNullOrEmpty(candidate.Specialty))
+                                    {
+                                        <p><strong>Specialty:</strong> @candidate.Specialty</p>
+                                    }
+                                    @if (!string.IsNullOrEmpty(candidate.Availibility))
+                                    {
+                                        <p><strong>Availability:</strong> @candidate.Availibility</p>
+                                    }
+
+                                    <!-- Positions Section -->
+                                    @if (candidate.Positions != null && candidate.Positions.Any())
+                                    {
+                                        <hr />
+                                        <h5>Availability</h5>
+                                        <div>
+                                            @foreach (var position in Enum.GetValues(typeof(PositionType)).Cast<PositionType>())
+                                            {
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input no-click profile"
+                                                    type="checkbox"
+                                                    name="positionTypes"
+                                                    value="@position"
+                                                    id="position-@position-@candidate.Id"
+                                                    @(candidate.Positions.Any(p => p.Type == position) ? "checked" : "")>
+                                                    <label class="form-check-label profile-text" for="position-@position-@candidate.Id">
+                                                        @if (position == PositionType.FullTime)
+                                                        {
+                                                            <text>Full-Time</text>
+                                                        }
+                                                        else if (position == PositionType.PartTime)
+                                                        {
+                                                            <text>Part-Time</text>
+                                                        }                                                       
+                                                        else if (position == PositionType.InOffice)
+                                                        {
+                                                            <text>In-Office</text>
+                                                        }
+                                                        else
+                                                        {
+                                                            <text>@position</text>
+                                                        }
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p>No positions available.</p>
+                                    }
+
+                                    <!-- Credentials Section -->
+                                    @if (candidate.Credentials != null && candidate.Credentials.Any())
+                                    {
+                                        <hr />
+                                        <h5>Credentials</h5>
+                                        <ul>
+                                            @foreach (var credential in candidate.Credentials)
+                                            {
+                                                <li>@credential.Issuer @credential.Name</li>
+                                            }
+                                        </ul>
+                                    }
+
+                                    <!-- Experiences Section -->
+                                    @if (candidate.Experiences != null && candidate.Experiences.Any())
+                                    {
+                                        <hr />
+                                        <h5>Work Experiences</h5>
+                                        <ul>
+                                            @foreach (var experience in candidate.Experiences)
+                                            {
+                                                <li>@experience.Employer - @experience.Role</li>
+                                            }
+                                        </ul>
+                                    }
+
+                                    <!-- Skills Section -->
+                                    @if (candidate.Skills != null && candidate.Skills.Any())
+                                    {
+                                        <hr />
+                                        <h5>Skills</h5>
+                                        <ul>
+                                            @foreach (var skill in candidate.Skills)
+                                            {
+                                                <li>@skill.Name</li>
+                                            }
+                                        </ul>
+                                    }
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <a asp-controller="MatchJobs" id="match-jobs-nav-@candidate.Id" asp-action="MatchCandidateWithJobs" asp-route-candidateId="@candidate.Id" hidden>Match With Jobs</a>
+                        <a type="button" onclick="triggerMatchJobs(@candidate.Id)" data-bs-toggle="modal" data-bs-target="#match-candidates-modal" class="btn btn-outline-primary link-button d-flex justify-content-center">Match With Jobs</a>
+
+                        <div class="modal fade" id="match-candidates-modal" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content transparent-body">
+                                    <div class="modal-body">
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <span class="material-symbols-outlined custom-icon">
+                                                smart_toy
+                                            </span>
+                                        </div>
+                                        <div class="d-flex justify-content-center gap-3 mt-3">
+                                            <div class="spinner-grow custom-spinner-medium" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <div class="spinner-grow custom-spinner-medium" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            <div class="spinner-grow custom-spinner-medium" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    // JavaScript to toggle visibility based on the checkboxes
+    document.addEventListener("DOMContentLoaded", function () {
+        const aiSearchToggle = document.getElementById("ai-search-toggle");
+        const manualSearchToggle = document.getElementById("manual-search-toggle");
+        const aiSearchDiv = document.getElementById("ai-search");
+        const manualSearchDiv = document.getElementById("manual-search");
+
+        // Initialize toggle states from localStorage or set defaults
+        let aiSearchState = localStorage.getItem("ShowAISearch") === "true";
+        let manualSearchState = localStorage.getItem("ShowManualSearch") === "true";
+
+        if (aiSearchState === false && manualSearchState === false) {
+            aiSearchState = true;
+        }
+
+        aiSearchToggle.checked = aiSearchState;
+        manualSearchToggle.checked = manualSearchState;
+
+        console.log("aiSearchState:", aiSearchToggle.checked);
+        console.log("manualSearchState:", manualSearchToggle.checked);
+
+
+
+        // Function to toggle visibility
+        function toggleSearchVisibility(selectedToggle) {
+            if (selectedToggle === "ai") {
+                aiSearchDiv.style.display = "block";
+                manualSearchDiv.style.display = "none";
+                aiSearchToggle.checked = true;
+                manualSearchToggle.checked = false;
+                localStorage.setItem("ShowAISearch", true);
+                localStorage.setItem("ShowManualSearch", false);
+            } else if (selectedToggle === "manual") {
+                aiSearchDiv.style.display = "none";
+                manualSearchDiv.style.display = "block";
+                aiSearchToggle.checked = false;
+                manualSearchToggle.checked = true;
+                localStorage.setItem("ShowAISearch", false);
+                localStorage.setItem("ShowManualSearch", true);
+            }
+            // } else {
+            //     aiSearchToggle.checked = false;
+            //     manualSearchToggle.checked = true;
+            //     aiSearchDiv.style.display = "none";
+            //     manualSearchDiv.style.display = "block";
+            // }
+            //persistToggleStates();
+        }
+
+
+        if (aiSearchToggle.checked) {
+            toggleSearchVisibility("ai");
+        } else if (manualSearchToggle.checked) {
+            toggleSearchVisibility("manual");
+        }
+
+        aiSearchToggle.onclick = () => toggleSearchVisibility("ai");
+        manualSearchToggle.onclick = () => toggleSearchVisibility("manual");
+    });
+
+    function triggerMatchJobs(candidateId) {
+        console.log("triggerJobsCandidates");
+        document.getElementById("match-jobs-nav-" + candidateId).click();
+    }
+</script>
