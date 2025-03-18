@@ -1,6 +1,6 @@
 # Locum Tenens Recruiter Tool
 
-**Link to Application**: [locumtenensrecruiter](https://locumtenensrecruiter-a6bhdadcc3cqg0hn.eastus2-01.azurewebsites.net/)
+**Demo**:
 
 ## Description
 
